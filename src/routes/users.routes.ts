@@ -1,10 +1,9 @@
-import { Router, Request, Response } from 'express'
+import { Router } from 'express'
+import { getAll, saveOne } from '../controllers/user.controllers'
 
 const users = Router()
 
-users.get('/users', (_req: Request, res: Response) => {
-  console.log('users route')
-  res.json({ name: 'sandra bb' })
-})
+users.get('/', getAll)
+users.post('/', saveOne)
 
 export default users;
