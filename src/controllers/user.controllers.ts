@@ -6,13 +6,17 @@ export async function getAll(_req: Request, res: Response) {
   res.send(respone)
 }
 
-export async function saveOne(_req: Request, res: Response) {
-  let user = new userModel({
-    username: 'abbyHer',
-    email: 'abbybb@mail.com',
-    password: 'password1',
-    permissions: ['read', 'writte'],
-  })
+export async function getOne(req: Request, res: Response) {
+  let { email } = req.params
+  console.log(email)
+  let respone = await userModel.findById(email)
+  res.send(respone)
+}
+
+export async function saveOne(req: Request, res: Response) {
+  let data = req.body
+  console.log(data)
+  let user = new userModel({ ...data })
   await user.save()
   res.send(user.email)
 }
