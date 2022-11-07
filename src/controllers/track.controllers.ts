@@ -6,22 +6,11 @@ export async function getAll(_req: Request, res: Response) {
   res.send(response)
 }
 
-export async function saveOne(_req: Request, res: Response) {
-  let data = new trackModel({
-    name: 'Tetris rap',
-    album: 'No es cuestion de edades',
-    cover: 'url/image',
-    duration: {
-      start: 0.0,
-      end: 1.53
-    },
-    artist: {
-      name: 'Chistian',
-      nickname: 'Porta',
-      nationality: 'Spanish'
-    }
-  })
-  data.save()
+export async function saveOne(req: Request, res: Response) {
+  let track = req.body
+
+  let data = new trackModel({ ...track })
+  await data.save()
 
   res.json(`added to ${data.album}`)
 }

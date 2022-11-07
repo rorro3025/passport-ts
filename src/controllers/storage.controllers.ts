@@ -6,10 +6,11 @@ export async function getAll(_req: Request, res: Response) {
   res.send(response)
 }
 
-export async function saveOne(_req: Request, res: Response) {
+export async function saveOne(req: Request, res: Response) {
+  const { file } = req
   let data = new storageModel({
-    url: 'music/url',
-    filename: 'tetris_rap.mp3'
+    url: `http://localhost:3040/${file?.filename}`,
+    filename: file?.filename
   })
   await data.save()
   res.send(data.id)
