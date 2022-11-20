@@ -5,6 +5,7 @@ import { ITrack } from './interfaces'
 const trackSchema = new Schema<ITrack>({
   name: { type: String },
   album: { type: String },
+  duration: { start: Number, end: Number },
   cover: {
     type: String,
     validate: {
@@ -13,7 +14,6 @@ const trackSchema = new Schema<ITrack>({
       },
       message: 'URL ERROR'
     },
-    duration: { start: Number, end: Number }
   },
   artist: {
     name: String,
